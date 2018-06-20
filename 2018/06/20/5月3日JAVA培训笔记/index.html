@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="Blackdogman's blog" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title> - Blackdogman's blog</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">Blackdogman's blog</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/" class="head-nav__link">Home</a></li><li class="head-nav__item"><a href="/archives" class="head-nav__link">Archives</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2018-06-20T11:49:43.803Z" class="post__time">June 20, 2018</time><h1 class="post__title"><a href="/2018/06/20/5月3日JAVA培训笔记/"></a></h1></header><div class="post__main echo"><h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><ol>
+<li>基本数据类型：byte,short,int,long,float,double,char,boolean</li>
+<li>访问权限：public,protected,default,private</li>
+<li>循环结构：for,do,while,break,contiune,return</li>
+<li>分支结构：if,else,switch,case</li>
+<li>异常处理：try,catch,finally,throw,throws</li>
+<li>与类相关：package,import,class,interface,abstract,final,extends,implements,static,this,super,new,instanceof</li>
+<li>保留字：goto,const</li>
+<li>线程：synchronized</li>
+<li>不常用：native,enum,volatile</li>
+</ol>
+<h2 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h2><h3 id="实现类-HashSet-TreeSet"><a href="#实现类-HashSet-TreeSet" class="headerlink" title="实现类 HashSet TreeSet"></a>实现类 HashSet TreeSet</h3><ol>
+<li>可以添加任意数据类型，HashSet可以有null，TreeSet不能有null</li>
+<li>HashSet集合无顺序，与添加顺序无关，可以存放不同类型的数据</li>
+<li>TreeSet会自动排序元素，存储同一类型数据</li>
+<li>set集合无下标</li>
+<li>元素不可重复</li>
+<li>常用方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.add(); //添加元素</span><br><span class="line">.remove(); //移除元素</span><br><span class="line">.clear(); //清除元素</span><br><span class="line">.size(); //获得容量</span><br><span class="line">.isEmety(); //判断是否为空</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><h3 id="实现类-HashMap-TreeMap"><a href="#实现类-HashMap-TreeMap" class="headerlink" title="实现类 HashMap TreeMap"></a>实现类 HashMap TreeMap</h3><ol>
+<li>Map中的键值对没有顺序，与添加的顺序无关</li>
+<li>不允许存在重复的键名，如果存在那么后添加的会覆盖前添加的</li>
+<li>键的类型为任意类型，通常使用String类型</li>
+<li>值的类型为任意类型</li>
+<li>HashMap中键和值都可以使用null</li>
+<li>TreeMap的key不允许为null</li>
+<li>TreeMap的键值对会被自动排序</li>
+<li>常用方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.put(); //放入元素</span><br><span class="line">.remove(key); //移除指定元素</span><br><span class="line">.clear(); //清除键值对</span><br><span class="line">.get(key); //得到指定key的值</span><br><span class="line">.keyset(); //得到一个key的map集合</span><br><span class="line">//遍历map的方法</span><br><span class="line">Set&lt;String&gt; set = map.keyset();</span><br><span class="line">for(String key : set)&#123;</span><br><span class="line">    map.get(key); //得到具体每个key的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h4 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h4><ol>
+<li>用List&lt;Map&lt;String, Object&gt;&gt;写通讯录</li>
+<li>写个洗牌并发牌</li>
+</ol>
+</div><footer class="post__foot u-cf"><a href="/2018/06/20/5月3日JAVA培训笔记/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2018 Blackdogman</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/2018/06/20/5月18日mysql，java培训笔记/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/2018/06/20/5月17日mysql培训笔记/" class="page-menu__link icon-arrow-right"></a></li></menu></footer></body></html>

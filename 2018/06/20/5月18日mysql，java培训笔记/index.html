@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="Blackdogman's blog" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title> - Blackdogman's blog</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">Blackdogman's blog</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/" class="head-nav__link">Home</a></li><li class="head-nav__item"><a href="/archives" class="head-nav__link">Archives</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2018-06-20T11:49:43.803Z" class="post__time">June 20, 2018</time><h1 class="post__title"><a href="/2018/06/20/5月18日mysql，java培训笔记/"></a></h1></header><div class="post__main echo"><h4 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h4><ul>
+<li>定义：Java Database Connectivity（java数据库连接）</li>
+<li>实现类：驱动</li>
+<li>JDBC是一套标准接口</li>
+<li>JDBC驱动才是不同数据库厂家实现这个接口产生的</li>
+<li><p>JDBC核心类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. DriverManger: 驱动管理</span><br><span class="line">2. Connection: 数据库连接 java.sql</span><br><span class="line">3. Statement(声明): 发送器 java.sqls</span><br><span class="line">4. ResultSet(结果集)：接收返回数据</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SQL注入</p>
+</li>
+</ul>
+<ol>
+<li>可以通过违规的参数拼拼接改造sql结构，安全性极差。</li>
+<li>使用PreparedStatement(预编译的sql语句，传入的参数不会改变sql原有的语意)来代替Statement, PreparedStatement是Statement的<strong>子接口</strong>。</li>
+</ol>
+<ul>
+<li>JDBC存储过程</li>
+</ul>
+<ol>
+<li>CallableStatement </li>
+<li>extends PreparedStatement (实现PreparedStatement)</li>
+<li>registerOutParameter(index, Type.type);</li>
+</ol>
+<ul>
+<li>批处理 (对于数据量较大的操作)</li>
+</ul>
+<ol>
+<li>避免一条条的进行语句的执行，采用批处理，可以提升效率。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement.addBatch(sql);</span><br><span class="line">Statement.addBatch(sql2);</span><br><span class="line">Statement.addBatch(sql3);</span><br><span class="line">Statement.addBatch(sql4);</span><br><span class="line">Statement.addBatch(sql5);</span><br><span class="line">Statement.execute();......</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="事务处理"><a href="#事务处理" class="headerlink" title="事务处理"></a><strong>事务处理</strong></h4><p>描述：保证一组数据库执行的一致性，要么都成功，要么都失败。</p>
+<h6 id="4大特性-ACID-【重点】"><a href="#4大特性-ACID-【重点】" class="headerlink" title="4大特性(ACID) 【重点】"></a>4大特性(ACID) 【重点】</h6><ol>
+<li>原子性:最小的事务单元了，无法拆分，捆绑在一起，要么一起成功，要么一起失败。</li>
+<li>一致性:数据库状态与业务逻辑是一致的，比如进行的数据交换，但是数据的总量不会发生变化。</li>
+<li>隔离性:高并发操作中，不同事务之间要隔离开，使每个并发事务互不干扰。</li>
+<li>持久性:一旦事务提交，事务中的数据会被持久化到数据库，即使提交事务后，数据库立马崩溃，在数据库重启时，也能通过某种方式恢复数据。<h6 id="常见问题【重点】"><a href="#常见问题【重点】" class="headerlink" title="常见问题【重点】"></a>常见问题【重点】</h6></li>
+<li>脏读（读取了其他事务未提交的数据）：读取到另外一个事务未提交的数据。事务2读取到事务1为提交的数据，但是事务2提交了，事务1回滚了。（读到未提交数据）</li>
+<li>不可重复读（读取了其他事务提交了的数据）：对同一记录两次读取不一样，因为另一个事务对记录做了更改。（读到了已提交数据）</li>
+<li>幻读（虚读）：对同一张表两次读取不一样，因为另一个事务插入了一条数据。（读到了新插入的数据）<h6 id="四大隔离级别"><a href="#四大隔离级别" class="headerlink" title="四大隔离级别"></a>四大隔离级别</h6></li>
+<li>SERIALIZABLE(串行化): 可避免脏读、不可重复读、虚读（幻读）。安全级别最高。</li>
+<li>REPEATABLE READ(可重复读) (mysql): 可避免脏读、不可重复读的发生。</li>
+<li>READ COMMITTED(读已提交数据) (oracle): 可避免脏读的发生</li>
+<li>READ UNCOMMITED(读未提交): 脏读、不可重复读、虚读都有可能发生。安全级别最低<h6 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conn.setAutoCommit(false); //关闭自动事务提交</span><br><span class="line">conn.commit(); //提交事务</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div><footer class="post__foot u-cf"><a href="/2018/06/20/5月18日mysql，java培训笔记/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2018 Blackdogman</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/2018/06/20/欢迎光临/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/2018/06/20/5月3日JAVA培训笔记/" class="page-menu__link icon-arrow-right"></a></li></menu></footer></body></html>
